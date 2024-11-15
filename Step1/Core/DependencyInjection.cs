@@ -4,7 +4,7 @@ using System.Reflection;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Common.Behaviours;
-using Core.Pizzas.V1.Commands;
+using Core.Votes.V1.Commands;
 
 public static class DependencyInjection
 {
@@ -17,7 +17,7 @@ public static class DependencyInjection
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
-        services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<CreatePizzaCommand>());
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<CastVoteCommand>());
         services.AddHealthChecks().AddDbContextCheck<DatabaseContext>();
 
         return services;

@@ -50,12 +50,9 @@ public static class LoggerSetup
             LoggingConfiguration.MinimumLevel.Override("Microsoft", LogEventLevel.Information);
         }
 
-        if (StartupSettings.Current.IncludeCorrelationId)
+        if (services is not null)
         {
-            if (services != null)
-            {
-                LoggingConfiguration.Enrich.WithCorrelate(services);
-            }
+            LoggingConfiguration.Enrich.WithCorrelate(services);
         }
 
         if (LoggingConfig.Current.IncludeWriteToFile)

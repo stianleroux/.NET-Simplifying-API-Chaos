@@ -1,7 +1,7 @@
 ﻿namespace Farris.Api;
 
 using Core;
-using Core.Pizzas.V1.Commands;
+using Core.Votes.V1.Commands;
 using Farris.Api.Endpoints.V1;
 using Farris.Api.StartupApp.App;
 using Farris.Api.StartupApp.Services;
@@ -16,7 +16,7 @@ public static class Configuration
             .AddApplication()
             .AddEndpointsApiExplorer()
             .AddOpenApi()
-            .AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<CreatePizzaCommand>());
+            .AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<CastVoteCommand>());
 
     public static void RegisterMiddlewares(this WebApplication app)
     {

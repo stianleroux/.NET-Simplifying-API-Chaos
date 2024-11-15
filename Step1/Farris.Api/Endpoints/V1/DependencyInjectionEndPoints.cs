@@ -6,10 +6,7 @@ public static class DependencyInjectionEndPoints
 {
     public static void AddV1Endpoints(this IEndpointRouteBuilder app)
     {
-        GetPizzaEndpoint.MapEndpoints(app);
         SearchPizzasEndpoint.MapEndpoints(app);
         CreatePizzaEndpoint.MapEndpoints(app);
-        UpdatePizzaEndpoint.MapEndpoints(app);
-        DeletePizzaEndpoint.MapEndpoints(app);
     }
 }

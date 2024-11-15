@@ -46,36 +46,30 @@ public static class CommonServices
             options.Providers.Add<GzipCompressionProvider>();
         });
 
-        if (StartupSettings.Current.IncludeHeaderVersion)
+        var apiVersioningBuilder = services.AddApiVersioning(options =>
         {
-            var apiVersioningBuilder = services.AddApiVersioning(options =>
-            {
-                options.ReportApiVersions = true;
-                options.DefaultApiVersion = new ApiVersion(1, 0);
-                options.AssumeDefaultVersionWhenUnspecified = true;
-                options.ApiVersionReader = ApiVersionReader.Combine(new UrlSegmentApiVersionReader(),
-                                                new HeaderApiVersionReader("api-version"),
-                                                new MediaTypeApiVersionReader("api-version"));
-            }); // Nuget Package: Asp.Versioning.Mvc
+            options.ReportApiVersions = true;
+            options.DefaultApiVersion = new ApiVersion(1, 0);
+            options.AssumeDefaultVersionWhenUnspecified = true;
+            options.ApiVersionReader = ApiVersionReader.Combine(new UrlSegmentApiVersionReader(),
+                                            new HeaderApiVersionReader("api-version"),
+                                            new MediaTypeApiVersionReader("api-version"));
+        }); // Nuget Package: Asp.Versioning.Mvc
 
-            apiVersioningBuilder.AddApiExplorer(options =>
-            {
-                options.GroupNameFormat = "'v'VVV";
-                options.SubstituteApiVersionInUrl = true;
-            });
-        }
+        apiVersioningBuilder.AddApiExplorer(options =>
+        {
+            options.GroupNameFormat = "'v'VVV";
+            options.SubstituteApiVersionInUrl = true;
+        });
 
         services.AddHttpContextAccessor();
 
         ////Correlation Id
-        if (StartupSettings.Current.IncludeCorrelationId)
-        {
-            services.AddCorrelate(options =>
-                options.RequestHeaders =
-                [
-                    CORRELATIONHEADER,
-                ]).AddCorrelationContextEnricher();
-        }
+        services.AddCorrelate(options =>
+            options.RequestHeaders =
+            [
+                CORRELATIONHEADER,
+            ]).AddCorrelationContextEnricher();
 
         ////FEATURE FLAGS
         services.AddFeatureManagement();
@@ -97,17 +91,9 @@ public static class CommonServices
         services.AddLazyCache();
 
         ////Correlation Id
-        if (StartupSettings.Current.IncludeCorrelationId)
-        {
-            services.AddHttpClient(Naming.HttpClientName)
+        services.AddHttpClient(Naming.HttpClientName)
                 .AddPolicyHandler(GetRetryPolicy())
                 .CorrelateRequests(CORRELATIONHEADER);
-        }
-        else
-        {
-            services.AddHttpClient(Naming.HttpClientName)
-                .AddPolicyHandler(GetRetryPolicy());
-        }
 
         services.AddHealthChecks();
 

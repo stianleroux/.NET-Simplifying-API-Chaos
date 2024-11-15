@@ -21,10 +21,7 @@ public static class CommonApp
         app.UseHttpsRedirection();
 
         ////Correlation Id
-        if (StartupSettings.Current.IncludeCorrelationId)
-        {
-            app.UseCorrelate();
-        }
+        app.UseCorrelate();
 
         ////SWAGGER
         app.UseOpenApi();
@@ -39,12 +36,6 @@ public static class CommonApp
         app.UseRateLimiter();
 
         ////Security
-        if (StartupSettings.Current.IncludeAuthorization)
-        {
-            app.UseAuthentication();
-            app.UseAuthorization();
-        }
-
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
@@ -75,6 +66,6 @@ public static class CommonApp
 
     private static string GetHomePageHtml(string title) => "<!DOCTYPE HTML><html>" +
             $"<head><meta name='viewport' content='width=device-width'/><title>{title}</title></head>" +
-            "<body><div style='text-align:center;margin-top:15%;font-family:Arial'>.NET Template</div></body>" +
+            "<body><div style='text-align:center;margin-top:15%;font-family:Arial'>Vote for Frump</div></body>" +
             "</html>";
 }

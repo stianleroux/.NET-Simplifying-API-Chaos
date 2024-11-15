@@ -2,12 +2,12 @@ namespace Core.EFMapping;
 
 using Common.Entities.V1;
 
-public class PizzaMap : IEntityTypeConfiguration<Pizza>
+public class VoteMap : IEntityTypeConfiguration<Vote>
 {
-    public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Pizza> builder)
+    public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Vote> builder)
     {
         // table
-        builder.ToTable("Pizza");
+        builder.ToTable("Vote");
 
         // key
         builder.HasKey(t => t.Id);
@@ -19,21 +19,23 @@ public class PizzaMap : IEntityTypeConfiguration<Pizza>
             .HasColumnType("int")
             .ValueGeneratedOnAdd();
 
-        builder.Property(t => t.Name)
+        builder.Property(t => t.VoterName)
             .IsRequired()
-            .HasColumnName("Name")
+            .HasColumnName("VoterName")
             .HasColumnType("varchar(200)")
             .HasMaxLength(200);
+
+        builder.Property(t => t.VoteFor)
+            .IsRequired()
+            .HasColumnName("VoteFor")
+            .HasColumnType("varchar(200)")
+            .HasMaxLength(200)
+            .HasConversion<string>();
 
         builder.Property(t => t.DateCreated)
             .HasColumnName("DateCreated")
             .HasColumnType("datetime")
             .HasDefaultValueSql("GETDATE()");
-
-        builder.Property(t => t.Disabled)
-            .HasColumnName("Disabled")
-            .HasColumnType("bool")
-            .HasDefaultValueSql("true");
     }
 
     public struct Table
