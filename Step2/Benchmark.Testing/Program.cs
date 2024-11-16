@@ -1,2 +1,2 @@
-﻿using Benchmark.Testing.Samples.V1;
-var summary = BenchmarkRunner.Run<PizzaV1MemoryBenchmarker>();
+﻿using Benchmark.Testing.Votes.V1;
+var summary = BenchmarkRunner.Run<VoteV1MemoryBenchmarker>();

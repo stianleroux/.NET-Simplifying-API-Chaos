@@ -18,187 +18,91 @@
 #pragma warning disable 8625 // Disable "CS8625 Cannot convert null literal to non-nullable reference type"
 #pragma warning disable 8765 // Disable "CS8765 Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes)."
 
-namespace API.Client.Template
+namespace Frump.API.Client.Template
 {
     using System = global::System;
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial interface IPizzaClient
+    public partial interface IVotesClient
     {
         /// <summary>
-        /// Get Pizza by Id.
+        /// Get all Votes.
         /// </summary>
-        /// <param name="id">int.</param>
+        /// <param name="query">Voting Search Model</param>
         /// <returns>A Task representing the asynchronous operation.</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ResultOfPizzaModel> GetAsync(int id, string api_version);
+        System.Threading.Tasks.Task<ListResultOfVoteModel> SearchAsync(GetAllVotesQuery query, string api_version);
 
         /// <summary>
-        /// Get Pizza by Id.
+        /// Get all Votes.
         /// </summary>
-        /// <param name="id">int.</param>
+        /// <param name="query">Voting Search Model</param>
         /// <returns>A Task representing the asynchronous operation.</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        ResultOfPizzaModel Get(int id, string api_version);
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Get Pizza by Id.
-        /// </summary>
-        /// <param name="id">int.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ResultOfPizzaModel> GetAsync(int id, string api_version, System.Threading.CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Update Pizza.
-        /// </summary>
-        /// <remarks>
-        /// Pizza request:
-        /// <br/>PATCH Pizza/9a3117a7-2d1f-4a2d-8fac-7f022539ea50
-        /// <br/>{
-        /// <br/>    "name" : "sample 2"
-        /// <br/>}
-        /// </remarks>
-        /// <param name="id">Id.</param>
-        /// <param name="model">Pizza Update Model.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ResultOfPizzaModel> UpdateAsync(int id, UpdatePizzaModel model, string api_version);
-
-        /// <summary>
-        /// Update Pizza.
-        /// </summary>
-        /// <remarks>
-        /// Pizza request:
-        /// <br/>PATCH Pizza/9a3117a7-2d1f-4a2d-8fac-7f022539ea50
-        /// <br/>{
-        /// <br/>    "name" : "sample 2"
-        /// <br/>}
-        /// </remarks>
-        /// <param name="id">Id.</param>
-        /// <param name="model">Pizza Update Model.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        ResultOfPizzaModel Update(int id, UpdatePizzaModel model, string api_version);
+        ListResultOfVoteModel Search(GetAllVotesQuery query, string api_version);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Update Pizza.
+        /// Get all Votes.
+        /// </summary>
+        /// <param name="query">Voting Search Model</param>
+        /// <returns>A Task representing the asynchronous operation.</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<ListResultOfVoteModel> SearchAsync(GetAllVotesQuery query, string api_version, System.Threading.CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Cast Vote.
         /// </summary>
         /// <remarks>
-        /// Pizza request:
-        /// <br/>PATCH Pizza/9a3117a7-2d1f-4a2d-8fac-7f022539ea50
+        /// Vote request:
+        /// <br/>POST Vote
         /// <br/>{
-        /// <br/>    "name" : "sample 2"
+        /// <br/>    "votername" : "John Doe",
+        /// <br/>    "votefor" : "Frump"
         /// <br/>}
         /// </remarks>
-        /// <param name="id">Id.</param>
-        /// <param name="model">Pizza Update Model.</param>
+        /// <param name="command">Vote Create Model.</param>
         /// <returns>A Task representing the asynchronous operation.</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ResultOfPizzaModel> UpdateAsync(int id, UpdatePizzaModel model, string api_version, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<ResultOfVoteModel> CreateAsync(CastVoteCommand command, string api_version);
 
         /// <summary>
-        /// Remove Pizza by Id.
+        /// Cast Vote.
         /// </summary>
-        /// <param name="id">Id.</param>
+        /// <remarks>
+        /// Vote request:
+        /// <br/>POST Vote
+        /// <br/>{
+        /// <br/>    "votername" : "John Doe",
+        /// <br/>    "votefor" : "Frump"
+        /// <br/>}
+        /// </remarks>
+        /// <param name="command">Vote Create Model.</param>
         /// <returns>A Task representing the asynchronous operation.</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Result> DeleteAsync(int id, string api_version);
-
-        /// <summary>
-        /// Remove Pizza by Id.
-        /// </summary>
-        /// <param name="id">Id.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        Result Delete(int id, string api_version);
+        ResultOfVoteModel Create(CastVoteCommand command, string api_version);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Remove Pizza by Id.
-        /// </summary>
-        /// <param name="id">Id.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<Result> DeleteAsync(int id, string api_version, System.Threading.CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Get all Pizzas.
-        /// </summary>
-        /// <param name="query">Pizza Search Model</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ListResultOfPizzaModel> SearchAsync(GetAllPizzasQuery query, string api_version);
-
-        /// <summary>
-        /// Get all Pizzas.
-        /// </summary>
-        /// <param name="query">Pizza Search Model</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        ListResultOfPizzaModel Search(GetAllPizzasQuery query, string api_version);
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Get all Pizzas.
-        /// </summary>
-        /// <param name="query">Pizza Search Model</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ListResultOfPizzaModel> SearchAsync(GetAllPizzasQuery query, string api_version, System.Threading.CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Create Pizza.
+        /// Cast Vote.
         /// </summary>
         /// <remarks>
-        /// Pizza request:
-        /// <br/>POST Pizza
+        /// Vote request:
+        /// <br/>POST Vote
         /// <br/>{
-        /// <br/>    "name" : "sample"
+        /// <br/>    "votername" : "John Doe",
+        /// <br/>    "votefor" : "Frump"
         /// <br/>}
         /// </remarks>
-        /// <param name="command">Pizza Create Model.</param>
+        /// <param name="command">Vote Create Model.</param>
         /// <returns>A Task representing the asynchronous operation.</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ResultOfPizzaModel> CreateAsync(CreatePizzaCommand command, string api_version);
-
-        /// <summary>
-        /// Create Pizza.
-        /// </summary>
-        /// <remarks>
-        /// Pizza request:
-        /// <br/>POST Pizza
-        /// <br/>{
-        /// <br/>    "name" : "sample"
-        /// <br/>}
-        /// </remarks>
-        /// <param name="command">Pizza Create Model.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        ResultOfPizzaModel Create(CreatePizzaCommand command, string api_version);
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Create Pizza.
-        /// </summary>
-        /// <remarks>
-        /// Pizza request:
-        /// <br/>POST Pizza
-        /// <br/>{
-        /// <br/>    "name" : "sample"
-        /// <br/>}
-        /// </remarks>
-        /// <param name="command">Pizza Create Model.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ResultOfPizzaModel> CreateAsync(CreatePizzaCommand command, string api_version, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<ResultOfVoteModel> CreateAsync(CastVoteCommand command, string api_version, System.Threading.CancellationToken cancellationToken);
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class PizzaClient : IPizzaClient
+    public partial class VotesClient : IVotesClient
     {
         #pragma warning disable 8618
         private string _baseUrl;
@@ -209,7 +113,7 @@ namespace API.Client.Template
         private Newtonsoft.Json.JsonSerializerSettings _instanceSettings;
 
     #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        public PizzaClient(string baseUrl, System.Net.Http.HttpClient httpClient)
+        public VotesClient(string baseUrl, System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             BaseUrl = baseUrl;
@@ -246,378 +150,35 @@ namespace API.Client.Template
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <summary>
-        /// Get Pizza by Id.
+        /// Get all Votes.
         /// </summary>
-        /// <param name="id">int.</param>
+        /// <param name="query">Voting Search Model</param>
         /// <returns>A Task representing the asynchronous operation.</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<ResultOfPizzaModel> GetAsync(int id, string api_version)
-        {
-            return GetAsync(id, api_version, System.Threading.CancellationToken.None);
-        }
-
-        /// <summary>
-        /// Get Pizza by Id.
-        /// </summary>
-        /// <param name="id">int.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual ResultOfPizzaModel Get(int id, string api_version)
-        {
-            return System.Threading.Tasks.Task.Run(async () => await GetAsync(id, api_version, System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Get Pizza by Id.
-        /// </summary>
-        /// <param name="id">int.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ResultOfPizzaModel> GetAsync(int id, string api_version, System.Threading.CancellationToken cancellationToken)
-        {
-            if (id == null)
-                throw new System.ArgumentNullException("id");
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-
-                    if (api_version != null)
-                        request_.Headers.TryAddWithoutValidation("api-version", ConvertToString(api_version, System.Globalization.CultureInfo.InvariantCulture));
-                    request_.Method = new System.Net.Http.HttpMethod("GET");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json; api-version=1.0"));
-
-                    var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
-                    // Operation Path: "Pizza/{id}"
-                    urlBuilder_.Append("Pizza/");
-                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
-                        foreach (var item_ in response_.Headers)
-                            headers_[item_.Key] = item_.Value;
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ResultOfPizzaModel>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <summary>
-        /// Update Pizza.
-        /// </summary>
-        /// <remarks>
-        /// Pizza request:
-        /// <br/>PATCH Pizza/9a3117a7-2d1f-4a2d-8fac-7f022539ea50
-        /// <br/>{
-        /// <br/>    "name" : "sample 2"
-        /// <br/>}
-        /// </remarks>
-        /// <param name="id">Id.</param>
-        /// <param name="model">Pizza Update Model.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<ResultOfPizzaModel> UpdateAsync(int id, UpdatePizzaModel model, string api_version)
-        {
-            return UpdateAsync(id, model, api_version, System.Threading.CancellationToken.None);
-        }
-
-        /// <summary>
-        /// Update Pizza.
-        /// </summary>
-        /// <remarks>
-        /// Pizza request:
-        /// <br/>PATCH Pizza/9a3117a7-2d1f-4a2d-8fac-7f022539ea50
-        /// <br/>{
-        /// <br/>    "name" : "sample 2"
-        /// <br/>}
-        /// </remarks>
-        /// <param name="id">Id.</param>
-        /// <param name="model">Pizza Update Model.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual ResultOfPizzaModel Update(int id, UpdatePizzaModel model, string api_version)
-        {
-            return System.Threading.Tasks.Task.Run(async () => await UpdateAsync(id, model, api_version, System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Update Pizza.
-        /// </summary>
-        /// <remarks>
-        /// Pizza request:
-        /// <br/>PATCH Pizza/9a3117a7-2d1f-4a2d-8fac-7f022539ea50
-        /// <br/>{
-        /// <br/>    "name" : "sample 2"
-        /// <br/>}
-        /// </remarks>
-        /// <param name="id">Id.</param>
-        /// <param name="model">Pizza Update Model.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ResultOfPizzaModel> UpdateAsync(int id, UpdatePizzaModel model, string api_version, System.Threading.CancellationToken cancellationToken)
-        {
-            if (id == null)
-                throw new System.ArgumentNullException("id");
-
-            if (model == null)
-                throw new System.ArgumentNullException("model");
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-
-                    if (api_version != null)
-                        request_.Headers.TryAddWithoutValidation("api-version", ConvertToString(api_version, System.Globalization.CultureInfo.InvariantCulture));
-                    var json_ = Newtonsoft.Json.JsonConvert.SerializeObject(model, JsonSerializerSettings);
-                    var content_ = new System.Net.Http.StringContent(json_);
-                    content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json-patch+json; api-version=1.0");
-                    request_.Content = content_;
-                    request_.Method = new System.Net.Http.HttpMethod("PATCH");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json; api-version=1.0"));
-
-                    var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
-                    // Operation Path: "Pizza/{id}"
-                    urlBuilder_.Append("Pizza/");
-                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
-                        foreach (var item_ in response_.Headers)
-                            headers_[item_.Key] = item_.Value;
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<ResultOfPizzaModel>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <summary>
-        /// Remove Pizza by Id.
-        /// </summary>
-        /// <param name="id">Id.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<Result> DeleteAsync(int id, string api_version)
-        {
-            return DeleteAsync(id, api_version, System.Threading.CancellationToken.None);
-        }
-
-        /// <summary>
-        /// Remove Pizza by Id.
-        /// </summary>
-        /// <param name="id">Id.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual Result Delete(int id, string api_version)
-        {
-            return System.Threading.Tasks.Task.Run(async () => await DeleteAsync(id, api_version, System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Remove Pizza by Id.
-        /// </summary>
-        /// <param name="id">Id.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Result> DeleteAsync(int id, string api_version, System.Threading.CancellationToken cancellationToken)
-        {
-            if (id == null)
-                throw new System.ArgumentNullException("id");
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-
-                    if (api_version != null)
-                        request_.Headers.TryAddWithoutValidation("api-version", ConvertToString(api_version, System.Globalization.CultureInfo.InvariantCulture));
-                    request_.Method = new System.Net.Http.HttpMethod("DELETE");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json; api-version=1.0"));
-
-                    var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
-                    // Operation Path: "Pizza/{id}"
-                    urlBuilder_.Append("Pizza/");
-                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
-                        foreach (var item_ in response_.Headers)
-                            headers_[item_.Key] = item_.Value;
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<Result>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <summary>
-        /// Get all Pizzas.
-        /// </summary>
-        /// <param name="query">Pizza Search Model</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<ListResultOfPizzaModel> SearchAsync(GetAllPizzasQuery query, string api_version)
+        public virtual System.Threading.Tasks.Task<ListResultOfVoteModel> SearchAsync(GetAllVotesQuery query, string api_version)
         {
             return SearchAsync(query, api_version, System.Threading.CancellationToken.None);
         }
 
         /// <summary>
-        /// Get all Pizzas.
+        /// Get all Votes.
         /// </summary>
-        /// <param name="query">Pizza Search Model</param>
+        /// <param name="query">Voting Search Model</param>
         /// <returns>A Task representing the asynchronous operation.</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual ListResultOfPizzaModel Search(GetAllPizzasQuery query, string api_version)
+        public virtual ListResultOfVoteModel Search(GetAllVotesQuery query, string api_version)
         {
             return System.Threading.Tasks.Task.Run(async () => await SearchAsync(query, api_version, System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Get all Pizzas.
+        /// Get all Votes.
         /// </summary>
-        /// <param name="query">Pizza Search Model</param>
+        /// <param name="query">Voting Search Model</param>
         /// <returns>A Task representing the asynchronous operation.</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ListResultOfPizzaModel> SearchAsync(GetAllPizzasQuery query, string api_version, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<ListResultOfVoteModel> SearchAsync(GetAllVotesQuery query, string api_version, System.Threading.CancellationToken cancellationToken)
         {
             if (query == null)
                 throw new System.ArgumentNullException("query");
@@ -640,8 +201,8 @@ namespace API.Client.Template
 
                     var urlBuilder_ = new System.Text.StringBuilder();
                     if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
-                    // Operation Path: "Pizza/Search"
-                    urlBuilder_.Append("Pizza/Search");
+                    // Operation Path: "Votes/Search"
+                    urlBuilder_.Append("Votes/Search");
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -668,7 +229,7 @@ namespace API.Client.Template
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<ListResultOfPizzaModel>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ListResultOfVoteModel>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -696,56 +257,59 @@ namespace API.Client.Template
         }
 
         /// <summary>
-        /// Create Pizza.
+        /// Cast Vote.
         /// </summary>
         /// <remarks>
-        /// Pizza request:
-        /// <br/>POST Pizza
+        /// Vote request:
+        /// <br/>POST Vote
         /// <br/>{
-        /// <br/>    "name" : "sample"
+        /// <br/>    "votername" : "John Doe",
+        /// <br/>    "votefor" : "Frump"
         /// <br/>}
         /// </remarks>
-        /// <param name="command">Pizza Create Model.</param>
+        /// <param name="command">Vote Create Model.</param>
         /// <returns>A Task representing the asynchronous operation.</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<ResultOfPizzaModel> CreateAsync(CreatePizzaCommand command, string api_version)
+        public virtual System.Threading.Tasks.Task<ResultOfVoteModel> CreateAsync(CastVoteCommand command, string api_version)
         {
             return CreateAsync(command, api_version, System.Threading.CancellationToken.None);
         }
 
         /// <summary>
-        /// Create Pizza.
+        /// Cast Vote.
         /// </summary>
         /// <remarks>
-        /// Pizza request:
-        /// <br/>POST Pizza
+        /// Vote request:
+        /// <br/>POST Vote
         /// <br/>{
-        /// <br/>    "name" : "sample"
+        /// <br/>    "votername" : "John Doe",
+        /// <br/>    "votefor" : "Frump"
         /// <br/>}
         /// </remarks>
-        /// <param name="command">Pizza Create Model.</param>
+        /// <param name="command">Vote Create Model.</param>
         /// <returns>A Task representing the asynchronous operation.</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual ResultOfPizzaModel Create(CreatePizzaCommand command, string api_version)
+        public virtual ResultOfVoteModel Create(CastVoteCommand command, string api_version)
         {
             return System.Threading.Tasks.Task.Run(async () => await CreateAsync(command, api_version, System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Create Pizza.
+        /// Cast Vote.
         /// </summary>
         /// <remarks>
-        /// Pizza request:
-        /// <br/>POST Pizza
+        /// Vote request:
+        /// <br/>POST Vote
         /// <br/>{
-        /// <br/>    "name" : "sample"
+        /// <br/>    "votername" : "John Doe",
+        /// <br/>    "votefor" : "Frump"
         /// <br/>}
         /// </remarks>
-        /// <param name="command">Pizza Create Model.</param>
+        /// <param name="command">Vote Create Model.</param>
         /// <returns>A Task representing the asynchronous operation.</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ResultOfPizzaModel> CreateAsync(CreatePizzaCommand command, string api_version, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<ResultOfVoteModel> CreateAsync(CastVoteCommand command, string api_version, System.Threading.CancellationToken cancellationToken)
         {
             if (command == null)
                 throw new System.ArgumentNullException("command");
@@ -768,8 +332,8 @@ namespace API.Client.Template
 
                     var urlBuilder_ = new System.Text.StringBuilder();
                     if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
-                    // Operation Path: "Pizza"
-                    urlBuilder_.Append("Pizza");
+                    // Operation Path: "Votes"
+                    urlBuilder_.Append("Votes");
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -796,7 +360,7 @@ namespace API.Client.Template
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<ResultOfPizzaModel>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ResultOfVoteModel>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -936,51 +500,7 @@ namespace API.Client.Template
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class ResultOfPizzaModel
-    {
-        [Newtonsoft.Json.JsonProperty("IsError", Required = Newtonsoft.Json.Required.Always)]
-        public bool IsError { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("IsValidationError", Required = Newtonsoft.Json.Required.Always)]
-        public bool IsValidationError { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("Data", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public PizzaModel Data { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("Message", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Message { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("Errors", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<string> Errors { get; set; } = new System.Collections.ObjectModel.Collection<string>();
-
-        [Newtonsoft.Json.JsonProperty("ValidationErrors", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> ValidationErrors { get; set; } = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.ICollection<string>>();
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class PizzaModel
-    {
-        [Newtonsoft.Json.JsonProperty("Id", Required = Newtonsoft.Json.Required.Always)]
-        public int Id { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("Name", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Name { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("DateCreated", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTimeOffset? DateCreated { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("Disabled", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Disabled { get; set; }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class ListResultOfPizzaModel
+    public partial class ListResultOfVoteModel
     {
         [Newtonsoft.Json.JsonProperty("IsError", Required = Newtonsoft.Json.Required.Always)]
         public bool IsError { get; set; }
@@ -990,7 +510,7 @@ namespace API.Client.Template
 
         [Newtonsoft.Json.JsonProperty("Data", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<PizzaModel> Data { get; set; } = new System.Collections.ObjectModel.Collection<PizzaModel>();
+        public System.Collections.Generic.ICollection<VoteModel> Data { get; set; } = new System.Collections.ObjectModel.Collection<VoteModel>();
 
         [Newtonsoft.Json.JsonProperty("Count", Required = Newtonsoft.Json.Required.Always)]
         public int Count { get; set; }
@@ -1010,16 +530,35 @@ namespace API.Client.Template
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetAllPizzasQuery : BaseSearchModel
+    public partial class VoteModel
     {
-        [Newtonsoft.Json.JsonProperty("Name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Name { get; set; }
+        [Newtonsoft.Json.JsonProperty("Id", Required = Newtonsoft.Json.Required.Always)]
+        public int Id { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("VoterName", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string VoterName { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("VoteFor", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string VoteFor { get; set; }
 
         [Newtonsoft.Json.JsonProperty("DateCreated", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset? DateCreated { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("Disabled", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Disabled { get; set; }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class GetAllVotesQuery : BaseSearchModel
+    {
+        [Newtonsoft.Json.JsonProperty("VoterName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string VoterName { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("VoteFor", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string VoteFor { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("DateCreated", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.DateTimeOffset? DateCreated { get; set; }
 
     }
 
@@ -1074,36 +613,16 @@ namespace API.Client.Template
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class CreatePizzaCommand
-    {
-        [Newtonsoft.Json.JsonProperty("Name", Required = Newtonsoft.Json.Required.Always)]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Name { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("Disabled", Required = Newtonsoft.Json.Required.Always)]
-        public bool Disabled { get; set; } = false;
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class UpdatePizzaModel
-    {
-        [Newtonsoft.Json.JsonProperty("Name", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Name { get; set; }
-
-        [Newtonsoft.Json.JsonProperty("Disabled", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Disabled { get; set; }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class Result
+    public partial class ResultOfVoteModel
     {
         [Newtonsoft.Json.JsonProperty("IsError", Required = Newtonsoft.Json.Required.Always)]
         public bool IsError { get; set; }
 
         [Newtonsoft.Json.JsonProperty("IsValidationError", Required = Newtonsoft.Json.Required.Always)]
         public bool IsValidationError { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("Data", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public VoteModel Data { get; set; }
 
         [Newtonsoft.Json.JsonProperty("Message", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
@@ -1116,6 +635,19 @@ namespace API.Client.Template
         [Newtonsoft.Json.JsonProperty("ValidationErrors", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
         public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> ValidationErrors { get; set; } = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.ICollection<string>>();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CastVoteCommand
+    {
+        [Newtonsoft.Json.JsonProperty("VoterName", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string VoterName { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("VoteFor", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string VoteFor { get; set; }
 
     }
 

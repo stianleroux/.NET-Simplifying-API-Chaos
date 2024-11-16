@@ -1,15 +1,12 @@
 ﻿namespace Farris.Api.Endpoints.V1;
 
-using Farris.Api.Endpoints.V1.Pizzas;
+using Farris.Api.Endpoints.V1.Votes;
 
 public static class DependencyInjectionEndPoints
 {
     public static void AddV1Endpoints(this IEndpointRouteBuilder app)
     {
-        GetPizzaEndpoint.MapEndpoints(app);
-        SearchPizzasEndpoint.MapEndpoints(app);
-        CreatePizzaEndpoint.MapEndpoints(app);
-        UpdatePizzaEndpoint.MapEndpoints(app);
-        DeletePizzaEndpoint.MapEndpoints(app);
+        SearchVoteEndpoint.MapEndpoints(app);
+        CreateVoteEndpoint.MapEndpoints(app);
     }
 }

@@ -1,9 +1,10 @@
 namespace Api;
 
-using Api.StartupApp.App;
-using Api.StartupApp.Services;
 using Core;
-using Core.Pizzas.V1.Commands;
+using Core.Votes.V1.Commands;
+using Utilities;
+using Utilities.StartupApp.App;
+using Utilities.StartupApp.Services;
 
 public class Startup
 {
@@ -28,8 +29,7 @@ public class Startup
         services.AddSecurity();
         services.AddApplication();
 
-        services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<CreatePizzaCommand>());
-        services.AddHealthChecks().AddDbContextCheck<DatabaseContext>();
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<CastVoteCommand>());
     }
 
     public void Configure(IApplicationBuilder app)

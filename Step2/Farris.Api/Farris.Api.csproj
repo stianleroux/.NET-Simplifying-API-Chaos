@@ -3,6 +3,7 @@
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
         <Nullable>enable</Nullable>
+        <AssemblyName>FarrisApi</AssemblyName>
         <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>7d3dbaab-2633-4f24-b025-4434a894895c</UserSecretsId>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
@@ -29,6 +30,7 @@
     <ItemGroup>
         <ProjectReference Include="..\Common\Common.csproj" />
         <ProjectReference Include="..\Core\Core.csproj" />
+        <ProjectReference Include="..\Utilities\Utilities.csproj" />
     </ItemGroup>
 
 </Project>

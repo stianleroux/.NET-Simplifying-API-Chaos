@@ -2,152 +2,34 @@
   "x-generator": "NSwag v14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))",
   "swagger": "2.0",
   "info": {
-    "title": ".NET Clean Architecture API",
+    "title": "Vote for Frump API",
     "version": "v1"
   },
+  "consumes": [
+    "application/json-patch+json; api-version=1.0",
+    "application/json; api-version=1.0",
+    "text/json; api-version=1.0",
+    "application/*+json; api-version=1.0"
+  ],
   "produces": [
     "application/json; api-version=1.0"
   ],
   "paths": {
-    "/Pizza/{id}": {
-      "get": {
-        "tags": [
-          "Pizza"
-        ],
-        "summary": "Get Pizza by Id.",
-        "operationId": "Pizza_Get",
-        "parameters": [
-          {
-            "type": "integer",
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "int.",
-            "format": "int32",
-            "x-nullable": false
-          },
-          {
-            "type": "string",
-            "name": "api-version",
-            "in": "header",
-            "x-nullable": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "x-nullable": false,
-            "description": "A Task representing the asynchronous operation.",
-            "schema": {
-              "$ref": "#/definitions/ResultOfPizzaModel"
-            }
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "Pizza"
-        ],
-        "summary": "Update Pizza.",
-        "description": "Pizza request:\nPATCH Pizza/9a3117a7-2d1f-4a2d-8fac-7f022539ea50\n{\n    \"name\" : \"sample 2\"\n}",
-        "operationId": "Pizza_Update",
-        "consumes": [
-          "application/json-patch+json; api-version=1.0",
-          "application/json; api-version=1.0",
-          "text/json; api-version=1.0",
-          "application/*+json; api-version=1.0"
-        ],
-        "parameters": [
-          {
-            "type": "integer",
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "Id.",
-            "format": "int32",
-            "x-nullable": false
-          },
-          {
-            "name": "model",
-            "in": "body",
-            "required": true,
-            "description": "Pizza Update Model.",
-            "schema": {
-              "$ref": "#/definitions/UpdatePizzaModel"
-            },
-            "x-nullable": false
-          },
-          {
-            "type": "string",
-            "name": "api-version",
-            "in": "header",
-            "x-nullable": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "x-nullable": false,
-            "description": "A Task representing the asynchronous operation.",
-            "schema": {
-              "$ref": "#/definitions/ResultOfPizzaModel"
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Pizza"
-        ],
-        "summary": "Remove Pizza by Id.",
-        "operationId": "Pizza_Delete",
-        "parameters": [
-          {
-            "type": "integer",
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "Id.",
-            "format": "int32",
-            "x-nullable": false
-          },
-          {
-            "type": "string",
-            "name": "api-version",
-            "in": "header",
-            "x-nullable": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "x-nullable": false,
-            "description": "A Task representing the asynchronous operation.",
-            "schema": {
-              "$ref": "#/definitions/Result"
-            }
-          }
-        }
-      }
-    },
-    "/Pizza/Search": {
+    "/Votes/Search": {
       "post": {
         "tags": [
-          "Pizza"
+          "Votes"
         ],
-        "summary": "Get all Pizzas.",
-        "operationId": "Pizza_Search",
-        "consumes": [
-          "application/json-patch+json; api-version=1.0",
-          "application/json; api-version=1.0",
-          "text/json; api-version=1.0",
-          "application/*+json; api-version=1.0"
-        ],
+        "summary": "Get all Votes.",
+        "operationId": "Votes_Search",
         "parameters": [
           {
             "name": "query",
             "in": "body",
             "required": true,
-            "description": "Pizza Search Model",
+            "description": "Voting Search Model",
             "schema": {
-              "$ref": "#/definitions/GetAllPizzasQuery"
+              "$ref": "#/definitions/GetAllVotesQuery"
             },
             "x-nullable": false
           },
@@ -163,34 +45,28 @@
             "x-nullable": false,
             "description": "A Task representing the asynchronous operation.",
             "schema": {
-              "$ref": "#/definitions/ListResultOfPizzaModel"
+              "$ref": "#/definitions/ListResultOfVoteModel"
             }
           }
         }
       }
     },
-    "/Pizza": {
+    "/Votes": {
       "post": {
         "tags": [
-          "Pizza"
+          "Votes"
         ],
-        "summary": "Create Pizza.",
-        "description": "Pizza request:\nPOST Pizza\n{\n    \"name\" : \"sample\"\n}",
-        "operationId": "Pizza_Create",
-        "consumes": [
-          "application/json-patch+json; api-version=1.0",
-          "application/json; api-version=1.0",
-          "text/json; api-version=1.0",
-          "application/*+json; api-version=1.0"
-        ],
+        "summary": "Cast Vote.",
+        "description": "Vote request:\nPOST Vote\n{\n    \"votername\" : \"John Doe\",\n    \"votefor\" : \"Frump\"\n}",
+        "operationId": "Votes_Create",
         "parameters": [
           {
             "name": "command",
             "in": "body",
             "required": true,
-            "description": "Pizza Create Model.",
+            "description": "Vote Create Model.",
             "schema": {
-              "$ref": "#/definitions/CreatePizzaCommand"
+              "$ref": "#/definitions/CastVoteCommand"
             },
             "x-nullable": false
           },
@@ -206,7 +82,7 @@
             "x-nullable": false,
             "description": "A Task representing the asynchronous operation.",
             "schema": {
-              "$ref": "#/definitions/ResultOfPizzaModel"
+              "$ref": "#/definitions/ResultOfVoteModel"
             }
           }
         }
@@ -214,69 +90,7 @@
     }
   },
   "definitions": {
-    "ResultOfPizzaModel": {
-      "type": "object",
-      "required": [
-        "IsError",
-        "IsValidationError",
-        "Message",
-        "Errors",
-        "ValidationErrors"
-      ],
-      "properties": {
-        "IsError": {
-          "type": "boolean"
-        },
-        "IsValidationError": {
-          "type": "boolean"
-        },
-        "Data": {
-          "$ref": "#/definitions/PizzaModel"
-        },
-        "Message": {
-          "type": "string"
-        },
-        "Errors": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "ValidationErrors": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      }
-    },
-    "PizzaModel": {
-      "type": "object",
-      "required": [
-        "Id",
-        "Name"
-      ],
-      "properties": {
-        "Id": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "Name": {
-          "type": "string"
-        },
-        "DateCreated": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "Disabled": {
-          "type": "boolean"
-        }
-      }
-    },
-    "ListResultOfPizzaModel": {
+    "ListResultOfVoteModel": {
       "type": "object",
       "required": [
         "IsError",
@@ -297,7 +111,7 @@
         "Data": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/PizzaModel"
+            "$ref": "#/definitions/VoteModel"
           }
         },
         "Count": {
@@ -324,7 +138,31 @@
         }
       }
     },
-    "GetAllPizzasQuery": {
+    "VoteModel": {
+      "type": "object",
+      "required": [
+        "Id",
+        "VoterName",
+        "VoteFor"
+      ],
+      "properties": {
+        "Id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "VoterName": {
+          "type": "string"
+        },
+        "VoteFor": {
+          "type": "string"
+        },
+        "DateCreated": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "GetAllVotesQuery": {
       "allOf": [
         {
           "$ref": "#/definitions/BaseSearchModel"
@@ -332,15 +170,15 @@
         {
           "type": "object",
           "properties": {
-            "Name": {
+            "VoterName": {
+              "type": "string"
+            },
+            "VoteFor": {
               "type": "string"
             },
             "DateCreated": {
               "type": "string",
               "format": "date-time"
-            },
-            "Disabled": {
-              "type": "boolean"
             }
           }
         }
@@ -406,34 +244,7 @@
         }
       }
     },
-    "CreatePizzaCommand": {
-      "type": "object",
-      "required": [
-        "Name",
-        "Disabled"
-      ],
-      "properties": {
-        "Name": {
-          "type": "string"
-        },
-        "Disabled": {
-          "type": "boolean",
-          "default": false
-        }
-      }
-    },
-    "UpdatePizzaModel": {
-      "type": "object",
-      "properties": {
-        "Name": {
-          "type": "string"
-        },
-        "Disabled": {
-          "type": "boolean"
-        }
-      }
-    },
-    "Result": {
+    "ResultOfVoteModel": {
       "type": "object",
       "required": [
         "IsError",
@@ -448,6 +259,9 @@
         },
         "IsValidationError": {
           "type": "boolean"
+        },
+        "Data": {
+          "$ref": "#/definitions/VoteModel"
         },
         "Message": {
           "type": "string"
@@ -466,6 +280,21 @@
               "type": "string"
             }
           }
+        }
+      }
+    },
+    "CastVoteCommand": {
+      "type": "object",
+      "required": [
+        "VoterName",
+        "VoteFor"
+      ],
+      "properties": {
+        "VoterName": {
+          "type": "string"
+        },
+        "VoteFor": {
+          "type": "string"
         }
       }
     }

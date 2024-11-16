@@ -14,7 +14,7 @@ public class DatabaseContext : DbContext
     {
     }
 
-    public DbSet<Pizza> Pizzas { get; set; }
+    public DbSet<Vote> Votes { get; set; }
 
-    protected override void OnModelCreating(ModelBuilder modelBuilder) => modelBuilder.ApplyConfiguration(new PizzaMap());
+    protected override void OnModelCreating(ModelBuilder modelBuilder) => modelBuilder.ApplyConfiguration(new VoteMap());
 }

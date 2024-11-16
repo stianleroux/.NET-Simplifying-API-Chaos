@@ -23,4 +23,8 @@
         <Message Text="$(NSwagOutput)" Condition="'$(NSwagExitCode)' == '0'" Importance="low" />
         <Error Text="$(NSwagOutput)" Condition="'$(NSwagExitCode)' != '0'" />
     </Target>
+
+    <Target Condition="'$(Configuration)' == 'Debug'" Name="PostBuild" AfterTargets="NSwag">
+        <Exec Command="openapi-generator-cli generate -i Farris-Api-Client-v1.json -g typescript-angular -o ..\..\Generate\Frump" />
+    </Target>
 </Project>
