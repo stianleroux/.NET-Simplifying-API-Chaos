@@ -1,10 +1,10 @@
-namespace Test.Pizzas.V1;
+namespace Test.Votes.V1;
 
 using Common.Models.Vote.V1;
 using Core;
 using Core.Votes.V1.Commands;
 using Core.Votes.V1.Queries;
-using Test.Setup.TestData.Pizza.V1;
+using Test.Setup.TestData.Vote.V1;
 
 [TestFixture]
 public class TestVoteV1Core : QueryTestBase
@@ -37,7 +37,7 @@ public class TestVoteV1Core : QueryTestBase
     [Test]
     public async Task GetAllAsync()
     {
-        var sutGetAll = new GetAllPizzaQueryHandler(this.databaseContext);
+        var sutGetAll = new GetAllVotesQueryHandler(this.databaseContext);
         var resultGetAll = await sutGetAll.Handle(new GetAllVotesQuery { VoterName = this.model.VoterName }, CancellationToken.None);
 
         Assert.That(resultGetAll?.Data.Count > 0, Is.True);

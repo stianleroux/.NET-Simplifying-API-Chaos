@@ -2,8 +2,7 @@
   "x-generator": "NSwag v14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))",
   "openapi": "3.0.0",
   "info": {
-    "title": "API",
-    "description": "API",
+    "title": "Vote for Farris API",
     "version": "v1"
   },
   "paths": {
@@ -17,106 +16,19 @@
         }
       }
     },
-    "/pizzas/v1/{id}": {
-      "get": {
-        "tags": [
-          "Farris.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
-        ],
-        "summary": "Get Pizza by Id.",
-        "operationId": "Get Pizza",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            },
-            "x-position": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "Farris.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
-        ],
-        "summary": "Update an existing pizza.",
-        "description": "Example request: { \"name\": \"sample 2\" }",
-        "operationId": "Update Pizza",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            },
-            "x-position": 1
-          }
-        ],
-        "requestBody": {
-          "x-name": "model",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdatePizzaModel"
-              }
-            }
-          },
-          "required": true,
-          "x-position": 2
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Farris.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
-        ],
-        "summary": "Delete a pizza by Id.",
-        "operationId": "Delete Pizza",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            },
-            "x-position": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/pizzas/v1/search": {
+    "/votes/v1/search": {
       "post": {
         "tags": [
-          "Farris.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+          "FarrisApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
         ],
-        "summary": "Search for pizzas.",
-        "operationId": "Search Pizzas",
+        "summary": "Search for votes.",
+        "operationId": "Search Votes",
         "requestBody": {
           "x-name": "query",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/GetAllPizzasQuery"
+                "$ref": "#/components/schemas/GetAllVotesQuery"
               }
             }
           },
@@ -130,20 +42,20 @@
         }
       }
     },
-    "/pizzas/v1": {
+    "/votes/v1": {
       "post": {
         "tags": [
-          "Farris.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+          "FarrisApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
         ],
-        "summary": "Create a new pizza.",
-        "description": "Example request: { \"name\": \"sample\" }",
-        "operationId": "Create Pizza",
+        "summary": "Cast a vote",
+        "description": "Example request: {POST Vote\r\n{\r\n    \"votername\" : \"John Doe\",\r\n    \"votefor\" : \"Frump\"\r\n}",
+        "operationId": "Cast Vote",
         "requestBody": {
           "x-name": "command",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreatePizzaCommand"
+                "$ref": "#/components/schemas/CastVoteCommand"
               }
             }
           },
@@ -160,7 +72,7 @@
   },
   "components": {
     "schemas": {
-      "GetAllPizzasQuery": {
+      "GetAllVotesQuery": {
         "allOf": [
           {
             "$ref": "#/components/schemas/BaseSearchModel"
@@ -169,17 +81,17 @@
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "Name": {
+              "VoterName": {
+                "type": "string",
+                "nullable": true
+              },
+              "VoteFor": {
                 "type": "string",
                 "nullable": true
               },
               "DateCreated": {
                 "type": "string",
                 "format": "date-time",
-                "nullable": true
-              },
-              "Disabled": {
-                "type": "boolean",
                 "nullable": true
               }
             }
@@ -242,30 +154,15 @@
           }
         }
       },
-      "CreatePizzaCommand": {
+      "CastVoteCommand": {
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "Name": {
+          "VoterName": {
             "type": "string"
           },
-          "Disabled": {
-            "type": "boolean",
-            "default": false
-          }
-        }
-      },
-      "UpdatePizzaModel": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "Name": {
-            "type": "string",
-            "nullable": true
-          },
-          "Disabled": {
-            "type": "boolean",
-            "nullable": true
+          "VoteFor": {
+            "type": "string"
           }
         }
       }

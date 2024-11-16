@@ -1,13 +1,11 @@
-﻿namespace Farris.Api.Endpoints.V1.Pizzas;
+﻿namespace Farris.Api.Endpoints.V1.Votes;
 
 using Core.Votes.V1.Commands;
-using Farris.Api.Helpers;
-using MediatR;
 
-public static class CreatePizzaEndpoint
+public static class CreateVoteEndpoint
 {
     public static void MapEndpoints(IEndpointRouteBuilder app)
-        => app.MapPost("/pizzas/v1", async (CastVoteCommand command, IMediator mediator, CancellationToken cancellationToken)
+        => app.MapPost(Config.ENDPOINT, async (CastVoteCommand command, IMediator mediator, CancellationToken cancellationToken)
             => ResultHelper.Outcome(await mediator.Send(command, cancellationToken)))
         .WithName("Cast Vote")
         .WithOpenApi(operation => new(operation)

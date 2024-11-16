@@ -16,7 +16,7 @@ public class GetAllVotesQuery : BaseSearchModel, IRequest<ListResult<VoteModel>>
     public DateTimeOffset? DateCreated { get; set; }
 }
 
-public class GetAllPizzaQueryHandler(DatabaseContext databaseContext) : IRequestHandler<GetAllVotesQuery, ListResult<VoteModel>>
+public class GetAllVotesQueryHandler(DatabaseContext databaseContext) : IRequestHandler<GetAllVotesQuery, ListResult<VoteModel>>
 {
     public async Task<ListResult<VoteModel>> Handle(GetAllVotesQuery request, CancellationToken cancellationToken = default)
     {

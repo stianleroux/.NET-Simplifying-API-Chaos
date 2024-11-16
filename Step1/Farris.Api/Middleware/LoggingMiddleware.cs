@@ -3,9 +3,6 @@ namespace Farris.Api.Middleware;
 using System.Net;
 using System.Text;
 using System.Text.Json;
-using Common.Logging.Static;
-using Common.Models.Shared;
-using FluentValidation;
 
 public class LoggingMiddleware
 {

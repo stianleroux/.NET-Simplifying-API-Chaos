@@ -1,4 +1,4 @@
-﻿namespace Test.Setup.TestData.Pizza.V1;
+﻿namespace Test.Setup.TestData.Vote.V1;
 
 using Common.Entities.V1;
 using Common.Models.Vote.V1;

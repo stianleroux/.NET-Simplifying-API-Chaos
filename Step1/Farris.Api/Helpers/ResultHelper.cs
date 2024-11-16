@@ -1,7 +1,5 @@
 namespace Farris.Api.Helpers;
 
-using Common.Models.Shared;
-
 public static class ResultHelper
 {
     public static IResult Outcome<T>(Result<T> result)
