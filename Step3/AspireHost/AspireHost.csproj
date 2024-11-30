@@ -25,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Farris.Api\Farris.Api.csproj" />
     <ProjectReference Include="..\Frump.Api\Frump.Api.csproj" />
+    <ProjectReference Include="..\FusaElection.UI\FusaElection.UI.csproj" />
   </ItemGroup>
 
 </Project>

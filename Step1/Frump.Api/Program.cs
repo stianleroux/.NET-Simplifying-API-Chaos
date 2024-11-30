@@ -1,4 +1,4 @@
-namespace Api;
+namespace Frump.Api;
 
 using Common.Logging.Static;
 using Microsoft.AspNetCore.Hosting;
@@ -18,5 +18,5 @@ public class Program
             {
                 b.UseKestrel(opt => opt.AddServerHeader = false);
                 b.UseStartup<Startup>();
-            }).UseSerilog();
+            });
 }

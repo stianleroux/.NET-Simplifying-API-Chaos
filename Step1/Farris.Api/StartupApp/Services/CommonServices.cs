@@ -108,7 +108,7 @@ public static class CommonServices
         return services;
     }
 
-    private static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
+    private static AsyncPolicy<HttpResponseMessage> GetRetryPolicy()
         => HttpPolicyExtensions
             .HandleTransientHttpError()
             .OrResult(msg => msg.StatusCode == HttpStatusCode.NotFound)

@@ -1,4 +1,5 @@
 namespace FusaElection.UI;
+
 using FusaElection.UI.Components;
 
 public class Program
@@ -11,6 +12,7 @@ public class Program
         builder.Services.AddRazorComponents()
             .AddInteractiveServerComponents();
 
+        // Register the generated API client
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.

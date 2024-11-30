@@ -15,7 +15,7 @@
     "application/json; api-version=1.0"
   ],
   "paths": {
-    "/Votes/Search": {
+    "/Votes/search": {
       "post": {
         "tags": [
           "Votes"
@@ -43,9 +43,23 @@
         "responses": {
           "200": {
             "x-nullable": false,
-            "description": "A Task representing the asynchronous operation.",
+            "description": "Votes",
             "schema": {
               "$ref": "#/definitions/ListResultOfVoteModel"
+            }
+          },
+          "400": {
+            "x-nullable": false,
+            "description": "Error finding votes",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorResult"
+            }
+          },
+          "500": {
+            "x-nullable": false,
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResult"
             }
           }
         }
@@ -80,9 +94,23 @@
         "responses": {
           "200": {
             "x-nullable": false,
-            "description": "A Task representing the asynchronous operation.",
+            "description": "Cast vote.",
             "schema": {
               "$ref": "#/definitions/ResultOfVoteModel"
+            }
+          },
+          "400": {
+            "x-nullable": false,
+            "description": "Error casting vote data.",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorResult"
+            }
+          },
+          "500": {
+            "x-nullable": false,
+            "description": "Server error.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResult"
             }
           }
         }
@@ -161,6 +189,90 @@
           "format": "date-time"
         }
       }
+    },
+    "ValidationErrorResult": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Result"
+        },
+        {
+          "type": "object",
+          "required": [
+            "IsError",
+            "IsValidationError"
+          ],
+          "properties": {
+            "IsError": {
+              "type": "boolean",
+              "default": false
+            },
+            "IsValidationError": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        }
+      ]
+    },
+    "Result": {
+      "type": "object",
+      "required": [
+        "IsError",
+        "IsValidationError",
+        "Message",
+        "Errors",
+        "ValidationErrors"
+      ],
+      "properties": {
+        "IsError": {
+          "type": "boolean"
+        },
+        "IsValidationError": {
+          "type": "boolean"
+        },
+        "Message": {
+          "type": "string"
+        },
+        "Errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ValidationErrors": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "ErrorResult": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Result"
+        },
+        {
+          "type": "object",
+          "required": [
+            "IsError",
+            "IsValidationError"
+          ],
+          "properties": {
+            "IsError": {
+              "type": "boolean",
+              "default": true
+            },
+            "IsValidationError": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        }
+      ]
     },
     "GetAllVotesQuery": {
       "allOf": [

@@ -1,4 +1,4 @@
-namespace Api.Controllers.V1;
+namespace Frump.Api.Controllers.V1;
 
 using Common.Models.Vote.V1;
 using Core.Votes.V1.Commands;

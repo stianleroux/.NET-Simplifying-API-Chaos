@@ -1,6 +1,7 @@
-namespace Api.Controllers.V1;
+namespace Frump.Api.Controllers.V1;
 
 using Asp.Versioning;
+using Frump.Api;
 
 /// <summary>
 ///     The Base Api Controller.

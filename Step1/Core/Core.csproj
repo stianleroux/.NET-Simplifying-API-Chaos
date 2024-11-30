@@ -11,7 +11,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.10.0" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.0" />
         <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="9.0.0" />
         <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="9.0.0" />

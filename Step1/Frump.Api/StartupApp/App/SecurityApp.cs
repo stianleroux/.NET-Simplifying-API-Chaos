@@ -1,4 +1,4 @@
-namespace Api.StartupApp.App;
+namespace Frump.Api.StartupApp.App;
 
 public static class SecurityApp
 {

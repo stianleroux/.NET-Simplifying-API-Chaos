@@ -29,7 +29,7 @@ namespace Frump.API.Client.Template
         /// Get all Votes.
         /// </summary>
         /// <param name="query">Voting Search Model</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
+        /// <returns>Votes</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ListResultOfVoteModel> SearchAsync(GetAllVotesQuery query, string api_version);
 
@@ -37,7 +37,7 @@ namespace Frump.API.Client.Template
         /// Get all Votes.
         /// </summary>
         /// <param name="query">Voting Search Model</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
+        /// <returns>Votes</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         ListResultOfVoteModel Search(GetAllVotesQuery query, string api_version);
 
@@ -46,7 +46,7 @@ namespace Frump.API.Client.Template
         /// Get all Votes.
         /// </summary>
         /// <param name="query">Voting Search Model</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
+        /// <returns>Votes</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ListResultOfVoteModel> SearchAsync(GetAllVotesQuery query, string api_version, System.Threading.CancellationToken cancellationToken);
 
@@ -62,7 +62,7 @@ namespace Frump.API.Client.Template
         /// <br/>}
         /// </remarks>
         /// <param name="command">Vote Create Model.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
+        /// <returns>Cast vote.</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ResultOfVoteModel> CreateAsync(CastVoteCommand command, string api_version);
 
@@ -78,7 +78,7 @@ namespace Frump.API.Client.Template
         /// <br/>}
         /// </remarks>
         /// <param name="command">Vote Create Model.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
+        /// <returns>Cast vote.</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         ResultOfVoteModel Create(CastVoteCommand command, string api_version);
 
@@ -95,7 +95,7 @@ namespace Frump.API.Client.Template
         /// <br/>}
         /// </remarks>
         /// <param name="command">Vote Create Model.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
+        /// <returns>Cast vote.</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<ResultOfVoteModel> CreateAsync(CastVoteCommand command, string api_version, System.Threading.CancellationToken cancellationToken);
 
@@ -153,7 +153,7 @@ namespace Frump.API.Client.Template
         /// Get all Votes.
         /// </summary>
         /// <param name="query">Voting Search Model</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
+        /// <returns>Votes</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual System.Threading.Tasks.Task<ListResultOfVoteModel> SearchAsync(GetAllVotesQuery query, string api_version)
         {
@@ -164,7 +164,7 @@ namespace Frump.API.Client.Template
         /// Get all Votes.
         /// </summary>
         /// <param name="query">Voting Search Model</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
+        /// <returns>Votes</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual ListResultOfVoteModel Search(GetAllVotesQuery query, string api_version)
         {
@@ -176,7 +176,7 @@ namespace Frump.API.Client.Template
         /// Get all Votes.
         /// </summary>
         /// <param name="query">Voting Search Model</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
+        /// <returns>Votes</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ListResultOfVoteModel> SearchAsync(GetAllVotesQuery query, string api_version, System.Threading.CancellationToken cancellationToken)
         {
@@ -201,8 +201,8 @@ namespace Frump.API.Client.Template
 
                     var urlBuilder_ = new System.Text.StringBuilder();
                     if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
-                    // Operation Path: "Votes/Search"
-                    urlBuilder_.Append("Votes/Search");
+                    // Operation Path: "Votes/search"
+                    urlBuilder_.Append("Votes/search");
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -237,6 +237,26 @@ namespace Frump.API.Client.Template
                             return objectResponse_.Object;
                         }
                         else
+                        if (status_ == 400)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResult>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new ApiException<ValidationErrorResult>("Error finding votes", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        if (status_ == 500)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResult>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new ApiException<ErrorResult>("Server error.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
                         {
                             var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
@@ -268,7 +288,7 @@ namespace Frump.API.Client.Template
         /// <br/>}
         /// </remarks>
         /// <param name="command">Vote Create Model.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
+        /// <returns>Cast vote.</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual System.Threading.Tasks.Task<ResultOfVoteModel> CreateAsync(CastVoteCommand command, string api_version)
         {
@@ -287,7 +307,7 @@ namespace Frump.API.Client.Template
         /// <br/>}
         /// </remarks>
         /// <param name="command">Vote Create Model.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
+        /// <returns>Cast vote.</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual ResultOfVoteModel Create(CastVoteCommand command, string api_version)
         {
@@ -307,7 +327,7 @@ namespace Frump.API.Client.Template
         /// <br/>}
         /// </remarks>
         /// <param name="command">Vote Create Model.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
+        /// <returns>Cast vote.</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<ResultOfVoteModel> CreateAsync(CastVoteCommand command, string api_version, System.Threading.CancellationToken cancellationToken)
         {
@@ -366,6 +386,26 @@ namespace Frump.API.Client.Template
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return objectResponse_.Object;
+                        }
+                        else
+                        if (status_ == 400)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<ValidationErrorResult>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new ApiException<ValidationErrorResult>("Error casting vote data.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
+                        }
+                        else
+                        if (status_ == 500)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<ErrorResult>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            throw new ApiException<ErrorResult>("Server error.", status_, objectResponse_.Text, headers_, objectResponse_.Object, null);
                         }
                         else
                         {
@@ -545,6 +585,51 @@ namespace Frump.API.Client.Template
 
         [Newtonsoft.Json.JsonProperty("DateCreated", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.DateTimeOffset? DateCreated { get; set; }
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class ValidationErrorResult : Result
+    {
+        [Newtonsoft.Json.JsonProperty("IsError", Required = Newtonsoft.Json.Required.Always)]
+        public bool IsError { get; set; } = false;
+
+        [Newtonsoft.Json.JsonProperty("IsValidationError", Required = Newtonsoft.Json.Required.Always)]
+        public bool IsValidationError { get; set; } = true;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class Result
+    {
+        [Newtonsoft.Json.JsonProperty("IsError", Required = Newtonsoft.Json.Required.Always)]
+        public bool IsError { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("IsValidationError", Required = Newtonsoft.Json.Required.Always)]
+        public bool IsValidationError { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("Message", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
+        public string Message { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("Errors", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.ICollection<string> Errors { get; set; } = new System.Collections.ObjectModel.Collection<string>();
+
+        [Newtonsoft.Json.JsonProperty("ValidationErrors", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public System.Collections.Generic.IDictionary<string, System.Collections.Generic.ICollection<string>> ValidationErrors { get; set; } = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.ICollection<string>>();
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.1.0.0 (NJsonSchema v11.0.2.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class ErrorResult : Result
+    {
+        [Newtonsoft.Json.JsonProperty("IsError", Required = Newtonsoft.Json.Required.Always)]
+        public bool IsError { get; set; } = true;
+
+        [Newtonsoft.Json.JsonProperty("IsValidationError", Required = Newtonsoft.Json.Required.Always)]
+        public bool IsValidationError { get; set; } = false;
 
     }
 

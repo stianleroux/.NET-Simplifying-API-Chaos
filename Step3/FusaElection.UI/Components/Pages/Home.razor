@@ -1,7 +1,42 @@
-﻿@page "/"
+﻿@using FrumpAPI = Frump.API.Client.Template
+@page "/"
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
+@code {
+    public IEnumerable<FrumpAPI.VoteModel> FrumpVotes = [];
+    public int FrumpVotesCount = 0;
 
-Welcome to your new app.
+    protected override async Task OnInitializedAsync()
+    {
+        var frumpClient = new FrumpAPI.VotesClient("https://localhost:7170/", new HttpClient());
+        var frumpData = await frumpClient.SearchAsync(new FrumpAPI.GetAllVotesQuery()
+            {
+                OrderBy = "VoterName",
+                Ordering = "Desc",
+                PagingArgs = new FrumpAPI.PagingArgs()
+                {
+PageNumber = 1,
+PageSize = 10,
+SkipAmount= 0,
+UsePaging = false
+                },
+        }, "v1");
+        FrumpVotesCount = frumpData.Count;
+        FrumpVotes = frumpData.Data.Select(x => new FrumpAPI.VoteModel()
+        {
+            DateCreated = x.DateCreated,
+            Id = x.Id,
+            VoteFor = x.VoteFor,
+            VoterName = x.VoterName
+        });
+    }
+}
+
+<h1>Felection 2024</h1>
+
+<h3>Number of Votes</h3>
+
+<h1>Frump | @(FrumpVotesCount) vs Farris | 1 </h1>
+
+

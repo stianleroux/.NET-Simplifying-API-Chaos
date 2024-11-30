@@ -25,7 +25,6 @@ public static class Configuration
         app.MapOpenApi();
         app.MapScalarApiReference();
         app.AddV1Endpoints();
-
         app.UseHttpsRedirection();
     }
 }

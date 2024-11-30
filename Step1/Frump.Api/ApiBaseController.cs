@@ -1,4 +1,4 @@
-namespace Api;
+namespace Frump.Api;
 
 using MediatR;
 

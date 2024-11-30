@@ -10,4 +10,9 @@
       <Folder Include="_shared\api\frump\" />
       <Folder Include="_shared\api\farris\" />
     </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Farris.Api.Client\Farris.Api.Client.csproj" />
+      <ProjectReference Include="..\Frump.Api.Client\Frump.Api.Client.csproj" />
+    </ItemGroup>
 </Project>

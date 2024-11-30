@@ -1,4 +1,4 @@
-namespace Api.Middleware;
+namespace Frump.Api.Middleware;
 
 using System.Text;
 using Common.Models.Shared;

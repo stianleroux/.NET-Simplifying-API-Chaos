@@ -12,8 +12,13 @@ public class VotesController : ApiController
     /// <returns>A <see cref="Task" /> representing the asynchronous operation.</returns>
     /// <param name="query">Voting Search Model</param>
     /// <param name="cancellationToken">Cancellation Token</param>
-    [HttpPost]
-    [Route("Search")]
+    /// <response code="200">Votes</response>
+    /// <response code="400">Error finding votes</response>
+    /// <response code="500">Server error.</response>
+    [HttpPost("search")]
+    [ProducesResponseType(typeof(ListResult<VoteModel>), 200)]
+    [ProducesResponseType(typeof(ValidationErrorResult), 400)]
+    [ProducesResponseType(typeof(ErrorResult), 500)]
     public async Task<ActionResult<ListResult<VoteModel>>> Search(GetAllVotesQuery query, CancellationToken cancellationToken = default)
         => ApiResponseHelper.ResponseOutcome(await this.Mediator.Send(query, cancellationToken), this);
 
@@ -31,7 +36,13 @@ public class VotesController : ApiController
     /// <param name="command">Vote Create Model.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     /// <returns>A <see cref="Task" /> representing the asynchronous operation.</returns>
+    /// <response code="200">Cast vote.</response>
+    /// <response code="400">Error casting vote data.</response>
+    /// <response code="500">Server error.</response>
     [HttpPost]
+    [ProducesResponseType(typeof(Result<VoteModel>), 200)]
+    [ProducesResponseType(typeof(ValidationErrorResult), 400)]
+    [ProducesResponseType(typeof(ErrorResult), 500)]
     public async Task<ActionResult<Result<VoteModel>>> Create(CastVoteCommand command, CancellationToken cancellationToken = default)
         => ApiResponseHelper.ResponseOutcome(await this.Mediator.Send(command, cancellationToken), this);
 }

@@ -90,7 +90,7 @@
       "generateOptionalParameters": false,
       "generateJsonMethods": false,
       "enforceFlagEnums": false,
-      "parameterArrayType": "System.Collections.Generic.IEnumerable",
+      "parameterArrayType": "System.Collections.Generic.List",
       "parameterDictionaryType": "System.Collections.Generic.IDictionary",
       "responseArrayType": "System.Collections.Generic.ICollection",
       "responseDictionaryType": "System.Collections.Generic.IDictionary",

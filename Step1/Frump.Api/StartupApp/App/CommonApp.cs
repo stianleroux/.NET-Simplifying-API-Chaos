@@ -1,4 +1,4 @@
-namespace Api.StartupApp.App;
+namespace Frump.Api.StartupApp.App;
 
 using Correlate.AspNetCore;
 using Api.Middleware;
